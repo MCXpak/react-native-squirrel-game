@@ -31,8 +31,9 @@ export default function App() {
   const resetGame = () => {
     setAcornCount(0)
     setSeedCount(0)
-    setTime(5)
+    setTime(prev => 5)
     setPressStart(false)
+    setCountId(prev => prev + 1)
   }
 
   const [acornCount, setAcornCount] = useState(0);
@@ -40,6 +41,7 @@ export default function App() {
   const [pressStart, setPressStart] = useState(false);
   const [time, setTime] = useState(5)                            
   const tiles = Array.apply("", Array(16));
+  const [countId, setCountId] = useState()
 
   function startGame(){
     setPressStart(prev => !prev)
@@ -55,6 +57,7 @@ export default function App() {
             <Text style={styles.counter}>SEEDS: {seedCount}</Text>
           </View>
           <CountDown
+              
               until={time}
               size={30}
               digitStyle={{backgroundColor: '#6e9026'}}
@@ -113,7 +116,8 @@ const styles = {
     fontWeight: 'bold'
   },
   start: {
-    backgroundColor: "#6e9026",
+    backgroundColor: '#6e9026',
+    // backgroundColor: isActive ? 'red': '',
     width: "100%",
     height: 40,
     alignItems: "center",
