@@ -24,24 +24,30 @@ const itemData = [
 
 export default function App() {
 
+  const [acornCount, setAcornCount] = useState(0);
+  const[seedCount, setSeedCount] = useState(0);
+  const [pressStart, setPressStart] = useState(false);
+  const [startText, setStartText] = useState("START")
+  const [time, setTime] = useState(60)                            
+  const tiles = Array.apply("", Array(16));
+
   useEffect(() => {
-    
-  },[acornCount, seedCount, ])
+      if(seedCount >= 50 && acornCount >= 10){
+        alert('YOU WON!!!!')
+        resetGame()
+        setTime(prev => prev + 60)
+      }
+  }, [acornCount, seedCount])
+
+  useEffect(() =>{
+    setStartText(pressStart ? "STOP" : "START")
+  }, [pressStart])
 
   const resetGame = () => {
     setAcornCount(0)
     setSeedCount(0)
-    setTime(prev => 5)
     setPressStart(false)
-    setCountId(prev => prev + 1)
   }
-
-  const [acornCount, setAcornCount] = useState(0);
-  const[seedCount, setSeedCount] = useState(0);
-  const [pressStart, setPressStart] = useState(false);
-  const [time, setTime] = useState(5)                            
-  const tiles = Array.apply("", Array(16));
-  const [countId, setCountId] = useState()
 
   function startGame(){
     setPressStart(prev => !prev)
@@ -57,12 +63,12 @@ export default function App() {
             <Text style={styles.counter}>SEEDS: {seedCount}</Text>
           </View>
           <CountDown
-              
               until={time}
               size={30}
               digitStyle={{backgroundColor: '#6e9026'}}
               digitTxtStyle={{color: 'white'}}
               onFinish={() => {
+                setTime(0)
                 alert('Ran out of time! Try again!')
                 resetGame()}
               }
@@ -76,7 +82,7 @@ export default function App() {
         </View>
         <TouchableOpacity onPress={startGame} >
           <View style={styles.start}>
-            <Text style={{color:"white", fontSize: 30, fontWeight: 'bold'}}>START</Text>
+            <Text style={{color:"white", fontSize: 30, fontWeight: 'bold'}}>{startText}</Text>
           </View>
         </TouchableOpacity>
       </ImageBackground>
