@@ -2,6 +2,7 @@
   "expo": {
     "name": "react-native-squirrel-game",
     "slug": "react-native-squirrel-game",
+    "owner": "squirrel-game",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
