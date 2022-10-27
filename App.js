@@ -4,23 +4,6 @@ import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity, ImageBackgro
 import Tile from './components/Tile';
 import Title from './assets/title2.png'
 import CountDown from 'react-native-countdown-component';
-// RN Code
-const Item = ({ item }) => {
-  return(
-    <TouchableOpacity style={styles.item}>
-      <Image
-        style={{ width: '25%', height: '25%' }}
-        source={{ uri: item.icon }}
-      />
-    </TouchableOpacity>
-  ) 
-};
-
-const itemData = [
-  {
-    icon: "https://icons.iconarchive.com/icons/limav/flat-gradient-social/256/Twitter-icon.png"
-  },
-]
 
 export default function App() {
 
